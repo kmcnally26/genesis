@@ -1,6 +1,8 @@
 # server-genesis
 One server to build your main infra pieces on CentOS 6
 
+Puppet, Foreman, Git, DNS, DHCP, TFTP, repos over http
+
 Build this on a laptop which has inet access.
 
 Then plug into a network with no inet access and it is capable 
