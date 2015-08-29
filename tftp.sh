@@ -1,13 +1,7 @@
-echo INSTALL PACKAGES
+source /root/server-genesis/genesis.properties
+
 yum install dhcp syslinux tftp-server xinetd httpd vim -y
 
-echo HTTP MEDIA SETUP - MOUNTED ONLY
-mkdir -p ${DROOT}/{${KSDIR},${PACKDIR}}
-mount -o loop /dev/cdrom  ${DROOT}/${PACKDIR} || echo Looks like cdrom is already mounted
-systemctl enable httpd.service
-systemctl restart httpd.service
-
-echo TFTP SETUP
 cp /usr/share/syslinux/pxelinux.0 /var/lib/tftpboot/
 cp /usr/share/syslinux/menu.c32 /var/lib/tftpboot/
 mkdir -p /var/lib/tftpboot/{boot,pxelinux.cfg}
@@ -19,7 +13,4 @@ LABEL ${DISTRO}
     KERNEL boot/${DISTRO}-vmlinuz
     APPEND initrd=boot/${DISTRO}-initrd.img inst.ks=http://${MYIP}/${KSDIR}/\${1}-ks devfs=nomount ip=dhcp
 EOF
-echo XINETD SETUP
 sed 's/disable[ \t=]*yes/disable     = no/' /etc/xinetd.d/tftp -i
-systemctl enable xinetd.service
-systemctl restart xinetd.service

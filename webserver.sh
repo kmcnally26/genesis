@@ -1,8 +1,13 @@
-echo INSTALL PACKAGES
-yum install dhcp syslinux tftp-server xinetd httpd vim -y
+source /root/server-genesis/genesis.properties
 
-echo HTTP MEDIA SETUP - MOUNTED ONLY
-mkdir -p ${DROOT}/{${KSDIR},${PACKDIR}}
-mount -o loop /dev/cdrom  ${DROOT}/${PACKDIR} || echo Looks like cdrom is already mounted
-systemctl enable httpd.service
-systemctl restart httpd.service
+yum install httpd -y
+mv /etc/httpd/conf.d/welcome.conf{,.off}
+
+mkdir /var/www/html/centos-6
+iso=CentOS-6.6-x86_64-minimal.iso
+#mount -o loop $iso /var/www/html/centos-6
+
+chkconfig httpd on
+service httpd start
+
+
