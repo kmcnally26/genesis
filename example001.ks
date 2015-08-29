@@ -6,7 +6,7 @@ url --url http://172.16.105.100/centos-6/
 lang en_US.UTF-8
 keyboard uk
 
-network --onboot yes --device eth0 --bootproto dhcp --noipv6 --hostname ${1}
+network --onboot yes --device eth0 --bootproto dhcp --noipv6
 
 rootpw  password
 firewall --disabled

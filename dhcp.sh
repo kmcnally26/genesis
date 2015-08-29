@@ -19,12 +19,36 @@ subnet $GENESIS_SUBNET netmask $GENESIS_NETMASK {
     option domain-name-servers $DNS_IP;
 }
 
-# Host declaration example
-#host apex {
-#   option host-name "apex.example.com";
-#   hardware ethernet 00:A0:78:8E:9E:AA;
-#   fixed-address 172.16.105.4;
-#}
+host ${PUPPET_SERVER} {
+   option host-name "${PUPPET_SERVER}";
+   hardware ethernet $PUPPET_MAC;
+   fixed-address $PUPPET_IP;
+}
+
+host ${FOREMAN_SERVER} {
+   option host-name "${FOREMAN_SERVER}";
+   hardware ethernet $FOREMAN_MAC;
+   fixed-address $FOREMAN_IP;
+}
+
+host ${PULP_SERVER} {
+   option host-name "${PULP_SERVER}";
+   hardware ethernet $PULP_MAC;
+   fixed-address $PULP_IP;
+}
+
+host ${DNS_SERVER} {
+   option host-name "${DNS_SERVER}";
+   hardware ethernet $DNS_MAC;
+   fixed-address $DNS_IP;
+}
+
+host ${KICK_SERVER} {
+   option host-name "${KICK_SERVER}";
+   hardware ethernet $KICK_MAC;
+   fixed-address $KICK_IP;
+}
+
 
 EOF
 
