@@ -12,7 +12,8 @@ max-lease-time 7200;
 ddns-update-style none;
 authoritative;
 log-facility local7;
-# Subnet settings
+
+# Subnet settings - for single subnet
 subnet $GENESIS_SUBNET netmask $GENESIS_NETMASK {
     next-server $GENESIS_IP;
     filename "pxelinux.0";
